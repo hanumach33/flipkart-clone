@@ -1,6 +1,5 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const connectDB = require('../config/db');
 const User = require('../models/User');
 const Product = require('../models/Product');
@@ -8,13 +7,13 @@ const Order = require('../models/Order');
 const Cart = require('../models/Cart');
 
 const products = [
-  // ── Electronics ──────────────────────────────────────────────────────────────
+  // ── Mobiles ───────────────────────────────────────────────────────────────────
   {
-    name: 'Samsung Galaxy M34 5G',
+    name: 'Samsung Galaxy M34 5G (8GB RAM, 128GB)',
     description:
       'Samsung Galaxy M34 5G with 6000mAh battery, 120Hz Super AMOLED display, 50MP triple camera, 8GB RAM + 128GB storage.',
     brand: 'Samsung',
-    category: 'Electronics',
+    category: 'Mobiles',
     images: [
       'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/v/o/b/-original-imaghx9qzgfshgms.jpeg',
       'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/l/s/o/-original-imaghx9qyvhyhcjz.jpeg',
@@ -28,11 +27,11 @@ const products = [
     seller: 'Retail Net',
   },
   {
-    name: 'Apple iPhone 15 (128GB)',
+    name: 'Apple iPhone 15 (128GB, Black)',
     description:
       'Apple iPhone 15 featuring the A16 Bionic chip, 48MP main camera, Dynamic Island, USB-C connector, and all-day battery life.',
     brand: 'Apple',
-    category: 'Electronics',
+    category: 'Mobiles',
     images: [
       'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/l/e/-original-imagrqgxgxhfzjxr.jpeg',
       'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/g/a/-original-imagrqgxdbknh4me.jpeg',
@@ -45,6 +44,25 @@ const products = [
     numReviews: 8935,
     seller: 'Flipkart Official',
   },
+  {
+    name: 'realme Narzo 70 Pro 5G (Glass Green, 8GB RAM)',
+    description:
+      '50MP Sony IMX890 OIS camera, Dimensity 7050 chipset, 67W SUPERVOOC fast charging, 5000mAh battery, 6.7-inch AMOLED display.',
+    brand: 'realme',
+    category: 'Mobiles',
+    images: [
+      'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/h/k/y/-original-imagx5kghhbjbm7p.jpeg',
+    ],
+    price: 23999,
+    discountPrice: 19999,
+    discountPercent: 17,
+    stock: 120,
+    rating: 4.2,
+    numReviews: 980,
+    seller: 'realme Official Store',
+  },
+
+  // ── Electronics ──────────────────────────────────────────────────────────────
   {
     name: 'Sony WH-1000XM5 Wireless Headphones',
     description:
@@ -62,23 +80,6 @@ const products = [
     rating: 4.6,
     numReviews: 4320,
     seller: 'Sony India Store',
-  },
-  {
-    name: 'realme Narzo 70 Pro 5G',
-    description:
-      '50MP Sony IMX890 OIS camera, Dimensity 7050 chipset, 67W SUPERVOOC fast charging, 5000mAh battery, 6.7-inch AMOLED display.',
-    brand: 'realme',
-    category: 'Electronics',
-    images: [
-      'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/h/k/y/-original-imagx5kghhbjbm7p.jpeg',
-    ],
-    price: 23999,
-    discountPrice: 19999,
-    discountPercent: 17,
-    stock: 120,
-    rating: 4.2,
-    numReviews: 980,
-    seller: 'realme Official Store',
   },
   {
     name: 'LG 32-inch IPS Monitor (32MR50C)',
@@ -107,7 +108,6 @@ const products = [
     category: 'Fashion',
     images: [
       'https://rukminim2.flixcart.com/image/312/312/xif0q/shoe/k/j/a/-original-imagh5fhtyh5kgyz.jpeg',
-      'https://rukminim2.flixcart.com/image/312/312/xif0q/shoe/5/w/u/-original-imagh5fhtbwqhfzz.jpeg',
     ],
     price: 11495,
     discountPrice: 8499,
@@ -224,7 +224,7 @@ const products = [
     seller: 'Samsung India Service',
   },
   {
-    name: 'LG 1.5 Ton 5 Star Dual Inverter AC (LS-Q18YNZA)',
+    name: 'LG 1.5 Ton 5 Star Dual Inverter AC',
     description:
       'LG 1.5 Ton Dual Inverter Compressor AC with 4-way swing, auto-clean, Wi-Fi ThinQ control, 100% copper condenser, ISEER 5 star.',
     brand: 'LG',
@@ -240,116 +240,106 @@ const products = [
     numReviews: 4100,
     seller: 'LG Shoppe',
   },
+
+  // ── Beauty ────────────────────────────────────────────────────────────────────
   {
-    name: 'Philips HD3769/00 Electric Rice Cooker (1.8L)',
+    name: 'L\'Oreal Paris Revitalift Serum 30ml',
     description:
-      'Philips 1.8L rice cooker with auto keep-warm function, non-stick removable bowl, steamer tray included, 700W power.',
-    brand: 'Philips',
-    category: 'Appliances',
+      '1.5% Hyaluronic Acid Serum for instant radiant skin, intense hydration, and reduced fine lines.',
+    brand: 'L\'Oreal',
+    category: 'Beauty',
     images: [
-      'https://m.media-amazon.com/images/I/61vF5jJo8JL._SL1500_.jpg',
+      'https://m.media-amazon.com/images/I/51y-fO54uXL._SL1000_.jpg',
     ],
-    price: 2895,
+    price: 999,
+    discountPrice: 749,
+    discountPercent: 25,
+    stock: 150,
+    rating: 4.4,
+    numReviews: 5400,
+    seller: 'L\'Oreal Beauty India',
+  },
+
+  // ── Sports ────────────────────────────────────────────────────────────────────
+  {
+    name: 'Yonex Muscle Power 29 Cricket Badminton Racket',
+    description:
+      'Isometric head shape, aluminum frame, graphite shaft for high tension stringing and powerful smashes.',
+    brand: 'Yonex',
+    category: 'Sports',
+    images: [
+      'https://m.media-amazon.com/images/I/61NfJz+j+xL._SL1500_.jpg',
+    ],
+    price: 2890,
     discountPrice: 1999,
-    discountPercent: 31,
-    stock: 110,
-    rating: 4.2,
-    numReviews: 2890,
-    seller: 'Philips India',
+    discountPercent: 30,
+    stock: 80,
+    rating: 4.5,
+    numReviews: 1890,
+    seller: 'Yonex Sports',
   },
 
   // ── Books ─────────────────────────────────────────────────────────────────────
   {
     name: 'Atomic Habits by James Clear',
     description:
-      'An easy and proven way to build good habits and break bad ones. #1 New York Times bestseller. Over 15 million copies sold worldwide.',
-    brand: 'Penguin Books',
+      'An Easy & Proven Way to Build Good Habits & Break Bad Ones. Millions of copies sold worldwide.',
+    brand: 'Penguin',
     category: 'Books',
     images: [
-      'https://m.media-amazon.com/images/I/81wgcld4wxL._SY466_.jpg',
-    ],
-    price: 899,
-    discountPrice: 449,
-    discountPercent: 50,
-    stock: 700,
-    rating: 4.8,
-    numReviews: 28000,
-    seller: 'Flipkart Books',
-  },
-  {
-    name: 'The Psychology of Money by Morgan Housel',
-    description:
-      'Timeless lessons on wealth, greed, and happiness. Explores how people think about money and ways to make better financial decisions.',
-    brand: 'Jaico Publishing',
-    category: 'Books',
-    images: [
-      'https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg',
-    ],
-    price: 499,
-    discountPrice: 319,
-    discountPercent: 36,
-    stock: 850,
-    rating: 4.7,
-    numReviews: 15000,
-    seller: 'Flipkart Books',
-  },
-
-  // ── Sports ────────────────────────────────────────────────────────────────────
-  {
-    name: 'Cosco Organic Volleyball (Size 4)',
-    description:
-      'Cosco Official Volleyball, size 4, 18-panel design, synthetic leather, butyl bladder for excellent air retention. Ideal for school and club play.',
-    brand: 'Cosco',
-    category: 'Sports',
-    images: [
-      'https://rukminim2.flixcart.com/image/312/312/xif0q/ball/v/p/i/-original-imaghzhzbtmfmqts.jpeg',
-    ],
-    price: 899,
-    discountPrice: 699,
-    discountPercent: 22,
-    stock: 200,
-    rating: 4.1,
-    numReviews: 760,
-    seller: 'Sports Arena',
-  },
-  {
-    name: 'Boldfit Resistance Bands Set (5 Bands)',
-    description:
-      'Set of 5 color-coded latex resistance bands for stretching, yoga, pilates, and strength training. 10–50 lbs resistance range.',
-    brand: 'Boldfit',
-    category: 'Sports',
-    images: [
-      'https://rukminim2.flixcart.com/image/312/312/xif0q/resistance-band/d/5/v/-original-imagg4yqghqehkyz.jpeg',
+      'https://m.media-amazon.com/images/I/91bYsX41DVL._SL1500_.jpg',
     ],
     price: 799,
-    discountPrice: 449,
-    discountPercent: 44,
-    stock: 350,
-    rating: 4.3,
-    numReviews: 4500,
-    seller: 'Boldfit Fitness',
+    discountPrice: 499,
+    discountPercent: 37,
+    stock: 400,
+    rating: 4.8,
+    numReviews: 24500,
+    seller: 'Penguin Random House',
   },
+
+  // ── Toys ──────────────────────────────────────────────────────────────────────
   {
-    name: 'Yonex Voltric 1 DG Badminton Racket',
+    name: 'LEGO Classic Medium Creative Brick Box',
     description:
-      'Yonex Voltric 1 DG head-heavy badminton racket with Tri-Voltage System and built-in T-Joint for powerful smashes. Strung.',
-    brand: 'Yonex',
-    category: 'Sports',
+      '484 pieces including windows, eyes, wheels, and classic bricks in 35 different colors for creative building.',
+    brand: 'LEGO',
+    category: 'Toys',
     images: [
-      'https://m.media-amazon.com/images/I/71zXHCn+PLL._SL1500_.jpg',
+      'https://m.media-amazon.com/images/I/71wZ3s-6FKL._SL1500_.jpg',
     ],
-    price: 2800,
-    discountPrice: 2099,
-    discountPercent: 25,
-    stock: 75,
-    rating: 4.4,
-    numReviews: 1890,
-    seller: 'Yonex India',
+    price: 3299,
+    discountPrice: 2499,
+    discountPercent: 24,
+    stock: 65,
+    rating: 4.7,
+    numReviews: 3100,
+    seller: 'LEGO Official Store',
+  },
+
+  // ── Grocery ───────────────────────────────────────────────────────────────────
+  {
+    name: 'Fortune Sunlite Refined Sunflower Oil (5 Litre Jar)',
+    description:
+      'Light and healthy sunflower oil rich in Vitamin E. High smoke point ideal for frying and daily cooking.',
+    brand: 'Fortune',
+    category: 'Grocery',
+    images: [
+      'https://m.media-amazon.com/images/I/61B+0s5mKqL._SL1500_.jpg',
+    ],
+    price: 850,
+    discountPrice: 699,
+    discountPercent: 17,
+    stock: 300,
+    rating: 4.6,
+    numReviews: 15400,
+    seller: 'Fortune Grocery',
   },
 ];
 
 const seedData = async () => {
   try {
+    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/flipkart';
     await connectDB();
 
     console.log('🗑️  Clearing existing data...');
@@ -361,7 +351,7 @@ const seedData = async () => {
     ]);
     console.log('✅ Existing data cleared.');
 
-    // Create admin user — Hanuma (password hashed by pre-save hook)
+    // Create admin user — Hanuma
     const adminUser = await User.create({
       name: 'Hanuma',
       email: 'hanuma@flipkart.com',
@@ -380,14 +370,9 @@ const seedData = async () => {
 
     // Insert products
     const createdProducts = await Product.insertMany(products);
-    console.log(`📦 ${createdProducts.length} products seeded.`);
+    console.log(`📦 ${createdProducts.length} products seeded across all categories.`);
 
     console.log('\n🎉 Database seeded successfully!\n');
-    console.log('─────────────────────────────────────────────');
-    console.log('  Admin  → hanuma@flipkart.com / Hanuma@33');
-    console.log('  User   → sai@flipkart.com   / Sai123');
-    console.log('─────────────────────────────────────────────\n');
-
     process.exit(0);
   } catch (error) {
     console.error(`❌ Seeding failed: ${error.message}`);
