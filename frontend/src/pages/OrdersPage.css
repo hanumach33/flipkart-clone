@@ -1,0 +1,132 @@
+/* ===== Orders Page ===== */
+.orders-page {
+  background: #f1f3f6;
+  min-height: 80vh;
+  padding: 24px 0;
+}
+
+.orders-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.orders-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 20px;
+}
+
+.empty-orders {
+  background: #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding: 80px 20px;
+}
+.empty-icon { font-size: 4rem; margin-bottom: 16px; }
+.empty-orders h3 { font-size: 1.2rem; color: #212121; margin-bottom: 8px; }
+.empty-orders p { color: #878787; margin-bottom: 24px; }
+.btn-shop {
+  display: inline-block;
+  background: #2874f0;
+  color: #fff;
+  padding: 12px 40px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.orders-list { display: flex; flex-direction: column; gap: 12px; }
+
+.order-card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.order-meta { display: flex; flex-direction: column; gap: 2px; }
+
+.order-id {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #212121;
+}
+
+.order-date {
+  font-size: 0.78rem;
+  color: #878787;
+}
+
+.order-status-badge {
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.order-items-list {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.order-item-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+}
+
+.order-item-details { flex: 1; }
+.order-item-name { font-size: 0.9rem; color: #212121; margin-bottom: 4px; }
+.order-item-qty { font-size: 0.8rem; color: #878787; }
+.order-item-price { font-size: 0.9rem; font-weight: 600; color: #212121; }
+
+.order-card-footer {
+  padding: 14px 20px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: #fafafa;
+  font-size: 0.85rem;
+  color: #212121;
+}
+
+.order-address {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #878787;
+  flex: 1;
+}
+
+.order-total strong { color: #212121; }
+
+.payment-method { font-weight: 500; }
+.paid-badge { background: #e8f5e9; color: #388e3c; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; margin-left: 6px; }
+.pending-badge { background: #fff3e0; color: #f57c00; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; margin-left: 6px; }

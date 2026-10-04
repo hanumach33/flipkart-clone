@@ -1,0 +1,157 @@
+/* ─── Banner Container ───────────────────────────────────────────────────────── */
+.banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #e0e0e0;
+  user-select: none;
+}
+
+.banner-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Colored fallback slides */
+.banner-slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+.banner-slide-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 8px;
+}
+
+.banner-slide-subtitle {
+  font-size: 16px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+
+.banner-slide-btn {
+  padding: 10px 28px;
+  background: #ffffff;
+  color: #2874f0;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.banner-slide-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ─── Arrow Buttons ──────────────────────────────────────────────────────────── */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 36px;
+  height: 60px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #444;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.banner-arrow:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.banner-arrow-left {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.banner-arrow-right {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+/* ─── Dots ───────────────────────────────────────────────────────────────────── */
+.banner-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.banner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.banner-dot.active {
+  background: #ffffff;
+  transform: scale(1.3);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .banner-slide {
+    height: 180px;
+  }
+
+  .banner-slide-title {
+    font-size: 20px;
+  }
+
+  .banner-slide-subtitle {
+    font-size: 13px;
+  }
+
+  .banner-arrow {
+    width: 28px;
+    height: 44px;
+    font-size: 16px;
+  }
+}

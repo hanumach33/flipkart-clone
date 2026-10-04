@@ -1,0 +1,32 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 1px;
+}
+
+.rating-star {
+  line-height: 1;
+}
+
+.rating-star--filled {
+  color: #ff9f00;
+}
+
+.rating-star--half {
+  color: #ff9f00;
+}
+
+.rating-star--empty {
+  color: #ccc;
+}
+
+.rating-count {
+  font-size: 0.85em;
+  color: #878787;
+  margin-left: 2px;
+}

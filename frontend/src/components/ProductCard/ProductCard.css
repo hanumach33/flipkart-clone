@@ -1,0 +1,194 @@
+/* ─── Card ───────────────────────────────────────────────────────────────────── */
+.product-card {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.25s, transform 0.25s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ─── Image Wrapper ──────────────────────────────────────────────────────────── */
+.product-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.product-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-image {
+  transform: scale(1.08);
+}
+
+/* ─── Hover Actions ──────────────────────────────────────────────────────────── */
+.product-card-actions {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 2;
+}
+
+.product-card:hover .product-card-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.product-card-action-btn:hover {
+  opacity: 0.9;
+}
+
+.btn-cart {
+  background: #2874f0;
+  color: #ffffff;
+}
+
+.btn-wishlist {
+  background: #ffffff;
+  color: #212121;
+  border: 1px solid #e0e0e0;
+}
+
+/* ─── Body ───────────────────────────────────────────────────────────────────── */
+.product-card-body {
+  padding: 10px 12px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-card-name {
+  font-size: 13px;
+  color: #212121;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.product-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.product-card-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: #388e3c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.product-card-rating-count {
+  font-size: 11px;
+  color: #878787;
+}
+
+.product-card-price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.price-final {
+  font-size: 16px;
+  font-weight: 700;
+  color: #212121;
+}
+
+.price-original {
+  font-size: 12px;
+  color: #878787;
+  text-decoration: line-through;
+}
+
+.price-discount {
+  font-size: 12px;
+  font-weight: 600;
+  color: #388e3c;
+}
+
+/* ─── Discount Badge ─────────────────────────────────────────────────────────── */
+.product-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ff6161;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 3px;
+  z-index: 3;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Out of Stock ───────────────────────────────────────────────────────────── */
+.product-card-oos {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #878787;
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 4;
+}
+
+/* ─── Delivery tag ───────────────────────────────────────────────────────────── */
+.product-card-delivery {
+  font-size: 11px;
+  color: #388e3c;
+  font-weight: 500;
+}

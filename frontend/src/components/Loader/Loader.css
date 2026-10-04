@@ -1,0 +1,29 @@
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.loader-fullpage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+.loader-spinner {
+  border: 3px solid #e0e0e0;
+  border-top-color: #2874f0;
+  border-radius: 50%;
+  animation: loader-spin 0.75s linear infinite;
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
