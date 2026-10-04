@@ -1,194 +1,200 @@
-/* ─── Card ───────────────────────────────────────────────────────────────────── */
+/* ===== ProductCard Styles ===== */
 .product-card {
-  background: #ffffff;
-  border: 1px solid #f0f0f0;
+  background: #fff;
   border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: box-shadow 0.25s, transform 0.25s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
 }
 
 .product-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
-/* ─── Image Wrapper ──────────────────────────────────────────────────────────── */
+.product-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #388e3c;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.wishlist-heart-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.wishlist-heart-btn:hover {
+  transform: scale(1.15);
+  background: #ffebee;
+}
+
 .product-card-image-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: #f9f9f9;
+  margin-bottom: 8px;
 }
 
 .product-card-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  padding: 12px;
   transition: transform 0.3s ease;
 }
 
 .product-card:hover .product-card-image {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-/* ─── Hover Actions ──────────────────────────────────────────────────────────── */
-.product-card-actions {
+.product-card-oos {
   position: absolute;
-  bottom: 8px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.25s, transform 0.25s;
-  z-index: 2;
-}
-
-.product-card:hover .product-card-actions {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.product-card-action-btn {
+  inset: 0;
+  background: rgba(255,255,255,0.85);
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 7px 14px;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  white-space: nowrap;
+  justify-content: center;
+  color: #f44336;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
 
-.product-card-action-btn:hover {
-  opacity: 0.9;
-}
-
-.btn-cart {
-  background: #2874f0;
-  color: #ffffff;
-}
-
-.btn-wishlist {
-  background: #ffffff;
-  color: #212121;
-  border: 1px solid #e0e0e0;
-}
-
-/* ─── Body ───────────────────────────────────────────────────────────────────── */
 .product-card-body {
-  padding: 10px 12px 14px;
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
+}
+
+.product-card-brand {
+  font-size: 0.72rem;
+  color: #878787;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .product-card-name {
-  font-size: 13px;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: #212121;
+  line-height: 1.3;
+  height: 2.6em;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.4;
 }
 
 .product-card-rating {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  margin: 2px 0;
 }
 
 .product-card-rating-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
   background: #388e3c;
   color: #fff;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   padding: 2px 6px;
   border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .product-card-rating-count {
-  font-size: 11px;
+  font-size: 0.78rem;
   color: #878787;
 }
 
 .product-card-price {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: baseline;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .price-final {
-  font-size: 16px;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #212121;
 }
 
 .price-original {
-  font-size: 12px;
+  font-size: 0.82rem;
   color: #878787;
   text-decoration: line-through;
 }
 
 .price-discount {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 0.82rem;
   color: #388e3c;
+  font-weight: 600;
 }
 
-/* ─── Discount Badge ─────────────────────────────────────────────────────────── */
-.product-card-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: #ff6161;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 3px;
-  z-index: 3;
-  letter-spacing: 0.3px;
-}
-
-/* ─── Out of Stock ───────────────────────────────────────────────────────────── */
-.product-card-oos {
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #878787;
-  font-size: 14px;
-  letter-spacing: 1px;
-  z-index: 4;
-}
-
-/* ─── Delivery tag ───────────────────────────────────────────────────────────── */
 .product-card-delivery {
-  font-size: 11px;
+  font-size: 0.75rem;
   color: #388e3c;
   font-weight: 500;
+}
+
+/* Bright Flipkart Yellow ADD TO CART Button */
+.product-card-add-btn {
+  margin-top: 8px;
+  width: 100%;
+  background: #ff9f00;
+  color: #fff;
+  border: none;
+  padding: 9px 0;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.product-card-add-btn:hover:not(:disabled) {
+  background: #e59000;
+  transform: translateY(-1px);
+}
+
+.product-card-add-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
 }

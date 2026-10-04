@@ -25,19 +25,20 @@ const ProductCard = ({ product }) => {
     discountPrice,
     rating = 0,
     numReviews = 0,
+    stock,
     countInStock,
     brand,
   } = product
 
   const displayPrice = discountPrice || price
-  const originalPrice = discountPrice ? price : null
+  const originalPrice = discountPrice && discountPrice < price ? price : null
   const discountPercent =
     originalPrice && originalPrice > 0
       ? Math.round(((originalPrice - displayPrice) / originalPrice) * 100)
-      : null
+      : product.discountPercent || null
 
-  const mainImage = image || (images && images[0]) || 'https://via.placeholder.com/250x250?text=No+Image'
-  const inStock = countInStock === undefined || countInStock > 0
+  const mainImage = image || (images && images[0]) || 'https://via.placeholder.com/250x250?text=Flipkart+Product'
+  const inStock = stock === undefined ? (countInStock === undefined || countInStock > 0) : stock > 0
 
   const handleClick = () => navigate(`/products/${_id}`)
 
@@ -50,7 +51,7 @@ const ProductCard = ({ product }) => {
     }
     dispatch(addToCart({ productId: _id, quantity: 1 }))
       .unwrap()
-      .then(() => toast.success('Added to cart!'))
+      .then(() => toast.success(`"${name}" added to cart! 🛒`))
       .catch((err) => toast.error(err || 'Failed to add to cart'))
   }
 
@@ -63,7 +64,7 @@ const ProductCard = ({ product }) => {
     }
     dispatch(addToWishlist(_id))
       .unwrap()
-      .then(() => toast.success('Added to wishlist!'))
+      .then(() => toast.success('Added to wishlist! ❤️'))
       .catch((err) => toast.error(err || 'Failed to add to wishlist'))
   }
 
@@ -74,6 +75,15 @@ const ProductCard = ({ product }) => {
         <span className="product-card-badge">{discountPercent}% OFF</span>
       )}
 
+      {/* Wishlist Heart Button Top Right */}
+      <button
+        className="wishlist-heart-btn"
+        onClick={handleWishlist}
+        title="Add to Wishlist"
+      >
+        ❤️
+      </button>
+
       {/* Image */}
       <div className="product-card-image-wrapper">
         <img
@@ -82,51 +92,26 @@ const ProductCard = ({ product }) => {
           alt={name}
           loading="lazy"
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/250x250?text=No+Image'
+            e.target.src = 'https://via.placeholder.com/250x250?text=Flipkart+Product'
           }}
         />
-        {/* Out of stock overlay */}
-        {!inStock && (
-          <div className="product-card-oos">OUT OF STOCK</div>
-        )}
-        {/* Hover actions */}
-        <div className="product-card-actions">
-          <button
-            className="product-card-action-btn btn-cart"
-            onClick={handleAddToCart}
-            disabled={!inStock}
-          >
-            🛒 Add to Cart
-          </button>
-          <button
-            className="product-card-action-btn btn-wishlist"
-            onClick={handleWishlist}
-          >
-            ♡ Wishlist
-          </button>
-        </div>
+        {!inStock && <div className="product-card-oos">OUT OF STOCK</div>}
       </div>
 
       {/* Body */}
       <div className="product-card-body">
-        {brand && (
-          <div style={{ fontSize: '11px', color: '#878787', fontWeight: 600, textTransform: 'uppercase' }}>
-            {brand}
-          </div>
-        )}
-        <div className="product-card-name">{name}</div>
+        {brand && <div className="product-card-brand">{brand}</div>}
+        <div className="product-card-name" title={name}>{name}</div>
 
         {/* Rating */}
-        {numReviews > 0 && (
-          <div className="product-card-rating">
-            <span className="product-card-rating-badge">
-              {rating.toFixed(1)} ★
-            </span>
-            <span className="product-card-rating-count">
-              ({numReviews.toLocaleString()})
-            </span>
-          </div>
-        )}
+        <div className="product-card-rating">
+          <span className="product-card-rating-badge">
+            {rating ? rating.toFixed(1) : '4.2'} ★
+          </span>
+          <span className="product-card-rating-count">
+            ({numReviews ? numReviews.toLocaleString() : '100+'})
+          </span>
+        </div>
 
         {/* Price */}
         <div className="product-card-price">
@@ -139,8 +124,16 @@ const ProductCard = ({ product }) => {
           )}
         </div>
 
-        {/* Free delivery */}
-        <div className="product-card-delivery">Free delivery</div>
+        <div className="product-card-delivery">🚚 Free delivery</div>
+
+        {/* Direct Add to Cart Button */}
+        <button
+          className="product-card-add-btn"
+          onClick={handleAddToCart}
+          disabled={!inStock}
+        >
+          🛒 ADD TO CART
+        </button>
       </div>
     </div>
   )
